@@ -1,0 +1,63 @@
+<template>
+  <div class="card" v-for="(hero, index) in dataFromAPI">
+    <img src="{{hero.image.md}}" alt="image profil" />
+    CARD
+    <button @click="this.asyncData">AsyncData</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data: () => {
+    return {
+      dataFromAPI: [],
+    };
+  },
+  methods: {
+    async asyncData() {
+      const data = this.$axios.$get(
+        "https://akabab.github.io/superhero-api/api/all.json"
+        /* {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods":
+              "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers":
+              "Origin, Content-Type, X-Auth-Token",
+          },
+        } */
+      );
+      const result = await data;
+      console.log("result", result[0]);
+
+      console.log(this.dataFromAPI);
+      this.dataFromAPI.push(result);
+      console.log("dayaFromAPI", this.dataFromAPI[1]);
+
+      return;
+    },
+  },
+  name: "Card",
+};
+</script>
+
+<style lang="css">
+@media screen and(max-width: 400px) {
+  .card {
+    width: 80%;
+    height: auto;
+    border: solid 2px grey;
+    margin: 20px;
+  }
+}
+.card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  height: 250px;
+  border: solid 2px grey;
+  margin: 10px;
+}
+</style>
