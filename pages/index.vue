@@ -10,14 +10,20 @@
         data-aos="flip-right"
       >
         <div class="image">
-          <!-- <img :src="`${character[index].imageURL}`" alt="image profil" /> -->
           <img class="profil" :src="`${character.images.sm}`" alt="profil" />
         </div>
         <div class="info">
           <div>{{ character.name }}</div>
-          <div>{{ character.slug }}</div>
+          <div>{{ character.biography.alignment }}</div>
+          <div>{{ character.biography.publisher }}</div>
+          <!-- <div>{{ character.biography.firstAppearance }}</div> -->
+          <NuxtLink
+            :to="`/hero/${character.id}`"
+            class="link-hero"
+            :prefetch="true"
+            >More informations</NuxtLink
+          >
         </div>
-        <button><NuxtLink to="/:id" :prefetch="true" />ok</button>
       </article>
     </div>
     <!-- <div><button @click="this.asyncData">AsyncData</button></div> -->
@@ -47,25 +53,15 @@ export default {
   },
 
   methods: {
+    upperCaseName() {
+      const characterNameToUpperCase = this.character.name.toUpperCase();
+    },
     async asyncData() {
       const data = this.$axios.$get(
-        /* "https://api.disneyapi.dev/characters" */
         "https://akabab.github.io/superhero-api/api/all.json"
-        /* {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods":
-              "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers":
-              "Origin, Content-Type, X-Auth-Token",
-          },
-        } */
       );
       const result = await data;
 
-      /*       console.log(result); */
-      /*  console.log(result[0].biography);
-      /*  console.log(this.charactersList); */
       result.forEach((hero) => {
         console.log(hero);
         this.charactersList.push(hero);
@@ -86,49 +82,55 @@ export default {
   width: 100%;
   min-height: 100vh;
 }
-@media screen and(max-width: 400px) {
-  .article {
+/* @media screen and(max-width: 400px) {
+  .card {
     width: 80%;
     height: auto;
     border: solid 2px grey;
     margin: 20px;
   }
-}
+} */
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin: 10px;
+  width: 320px;
+  height: 480px;
   /* justify-content: center;
 
   align-items: center;
-  width: 160px;
-  height: 240px;
+  
   border: solid 2px grey;
  */
-  position: relative;
-} /*
-.image {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 240px;
-  height: 320px;
-} 
-.profil {
-  position: absolute;
-  max-width: 180px;
-  height: auto;
-  z-index: -1;
-  overflow: hidden;
-} */
-/* .info {
-  position: absolute;
-  bottom: -10;
-  left: 0;
 }
-.info:hover {
+/* .image {
+  width: 100%;
+  height: auto;
+} */
+.profil {
+  width: 100%;
+  height: auto;
+}
+.info {
   position: absolute;
   bottom: 0;
   left: 0;
-} */
+  background-color: rgb(177, 44, 44);
+  position: absolute;
+  width: 100%;
+  color: white;
+}
+.link-hero {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+.link-hero:visited {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
 </style>
