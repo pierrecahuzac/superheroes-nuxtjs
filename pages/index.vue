@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <Header />
+
     <!-- heroes -->
-    <div class="container heroes">
+    <div class="container heroes" v-if="charactersList">
       <article
         class="card"
         v-for="(character, index) in charactersList"
@@ -21,19 +22,27 @@
             :to="`/hero/${character.id}`"
             class="link-hero"
             :prefetch="true"
+            data="data"
             >More informations</NuxtLink
           >
         </div>
       </article>
     </div>
+    <div class="loading" v-else>
+      <Loading />
+    </div>
+    <Footer />
+
     <!-- <div><button @click="this.asyncData">AsyncData</button></div> -->
   </div>
 </template>
 
 <script>
-/* import Card from "@/components/Card.vue"; */
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Loading from "../components/Loading.vue";
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "IndexPage",
@@ -45,34 +54,36 @@ export default {
   data: () => {
     return {
       charactersList: [],
+      loading: true,
     };
   },
   mounted() {
     AOS.init();
+    this.loading = true;
+    console.log("ici", this.loading);
     this.asyncData();
+    this.loading = true;
+    console.log("ou la", this.loading);
   },
-
   methods: {
-    upperCaseName() {
-      const characterNameToUpperCase = this.character.name.toUpperCase();
-    },
     async asyncData() {
+      console.log("lal", this.loading);
       const data = this.$axios.$get(
         "https://akabab.github.io/superhero-api/api/all.json"
       );
       const result = await data;
-
       result.forEach((hero) => {
-        console.log(hero);
         this.charactersList.push(hero);
       });
     },
   },
+  components: { Loading, Header },
 };
 </script>
 <style>
 .home {
   box-sizing: border-box;
+  min-height: 100vh;
 }
 .container {
   display: flex;

@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600&display=swap");
 html {
+  font-family: "Karla", sans-serif;
+  font-size: 18px;
   background-color: rgba(0, 0, 0, 0.752);
-  font-family: Calibri, sans-serif;
 }

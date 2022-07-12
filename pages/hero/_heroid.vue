@@ -19,10 +19,11 @@ export default {
       hero: [],
     };
   },
-  mounted() {
+  created() {
     AOS.init();
     this.asyncData();
   },
+  mounted() {},
 
   methods: {
     async asyncData() {

@@ -1,17 +1,18 @@
 <template>
-  <div class="header">
-    <h1>Super heroes characters list</h1>
+  <div class="footer">
+    <h1>Super heroes characters footer</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Header",
+  name: "Footer",
 };
 </script>
 
+
 <style>
-.header {
+.footer {
   width: 100%;
   height: 150px;
   display: flex;
