@@ -3,7 +3,7 @@
     <Header />
 
     <!-- heroes -->
-    <div class="container heroes" v-if="charactersList">
+    <div class="container heroes" v-if="charactersList.length > 0">
       <article
         class="card"
         v-for="(character, index) in charactersList"
@@ -31,7 +31,7 @@
     <div class="loading" v-else>
       <Loading />
     </div>
-    <Footer />
+    <Footer text />
 
     <!-- <div><button @click="this.asyncData">AsyncData</button></div> -->
   </div>
@@ -55,6 +55,7 @@ export default {
     return {
       charactersList: [],
       loading: true,
+      text: "test",
     };
   },
   mounted() {
