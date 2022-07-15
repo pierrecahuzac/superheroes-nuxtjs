@@ -22,8 +22,8 @@ export default {
   background-color: white;
 }
 .img-container {
-  width: 600px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
 }
 
 .img {
