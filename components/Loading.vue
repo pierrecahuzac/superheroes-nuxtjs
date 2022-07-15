@@ -1,8 +1,6 @@
 <template>
   <div class="loading-container">
-    <div class="img-container">
-      <img class="img" src="~/assets/Loading_icon_with_fade.png" alt="" />
-    </div>
+    <img class="img" src="~/assets/Loading_icon_with_fade.png" alt="" />
   </div>
 </template>
 
@@ -12,23 +10,24 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .loading-container {
   display: flex;
   justify-content: center;
+  z-index: 2;
   align-items: center;
   width: 100%;
   min-height: 100vh;
   background-color: white;
 }
-.img-container {
+/* .img-container {
   width: 400px;
   height: 400px;
-}
+} */
 
 .img {
-  width: 100%;
-  height: auto;
+  width: 400px;
+  height: 400px;
   animation: spin 4s infinite;
 }
 @keyframes spin {

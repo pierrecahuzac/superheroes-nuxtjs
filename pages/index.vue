@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header />
+    <!--  <Header /> -->
     <!-- heroes -->
     <input type="text" placeholder="Search" />
     <Loading v-if="$fetchState.pending" />
@@ -15,7 +15,6 @@
           <img class="profil" :src="`${character.images.sm}`" alt="profil" />
         </div>
         <div class="info">
-          <div>{{ character.id }}</div>
           <div>{{ character.name }}</div>
           <div>{{ character.biography.alignment }}</div>
           <div>{{ character.biography.publisher }}</div>
@@ -29,6 +28,7 @@
             class="link-hero"
             data="data"
             characterId="characterId"
+            hero="charactersList"
             >More Info</NuxtLink
           >
         </div>
@@ -37,7 +37,7 @@
     <!-- <div class="loading"> -->
 
     <!-- </div> -->
-    <Footer />
+    <!--  <Footer /> -->
 
     <!-- <div><button @click="this.asyncData">AsyncData</button></div> -->
   </div>
@@ -96,7 +96,7 @@ export default {
   components: { Loading, Header },
 };
 </script>
-<style >
+<style scoped >
 .home {
   box-sizing: border-box;
   min-height: 100vh;
@@ -150,7 +150,7 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgb(177, 44, 44);
+  background-color: red;
   position: absolute;
   width: 100%;
   color: white;
