@@ -20,6 +20,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Loading from "~/components/Loading.vue";
+
 export default {
   name: "hero",
   data() {
