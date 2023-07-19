@@ -50,7 +50,7 @@ export default {
   },
   components: { Loading },
 };
-</script>  
+</script>
 
 <style scoped>
 .hero-info-container {
